@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olly Jay Store — Akure's Boutique for Bold Style</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<style>
+  :root{
+    --cream:#F6F1E7;
+    --paper:#FCFAF5;
+    --ink:#1E1B16;
+    --ink-soft:#4A4640;
+    --emerald:#1F4235;
+    --emerald-deep:#122820;
+    --gold:#B8894B;
+    --gold-soft:#DFC494;
+    --tag-blue:#2A3F8F;
+    --burgundy:#6E2430;
+    --line:rgba(30,27,22,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+
+  /* ---------- shelf tag (signature element) ---------- */
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;font-weight:600;letter-spacing:0.06em;
+    text-transform:uppercase;
+    background:var(--tag-blue);
+    color:#fff;
+    padding:5px 12px 5px 10px;
+    border-radius:2px;
+    position:relative;
+    box-shadow:0 2px 0 rgba(0,0,0,0.15);
+  }
+  .tag::before{
+    content:'';
+    width:5px;height:5px;border-radius:50%;
+    background:var(--gold-soft);
+    flex-shrink:0;
+  }
+  .tag.tag--ink{background:var(--ink);}
+  .tag.tag--gold{background:var(--gold);color:var(--emerald-deep);}
+  .tag.tag--burgundy{background:var(--burgundy);}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,241,231,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;max-width:1240px;margin:0 auto;
+    gap:12px;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand-mark{
+    width:42px;height:42px;border-radius:50%;
+    flex-shrink:0;
+  }
+  .brand-mark img{width:100%;height:100%;object-fit:contain;}
+  .brand-name{font-family:'Fraunces',serif;font-size:17px;font-weight:600;line-height:1;white-space:nowrap;}
+  .brand-name span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-soft);font-weight:500;margin-top:3px;white-space:normal;}
+  .nav-links{display:flex;gap:8px;align-items:center;}
+  .nav-links a.tag{font-size:10px;}
+  .nav-cta{
+    background:var(--ink);color:var(--cream);
+    padding:9px 16px;border-radius:2px;
+    font-size:13px;font-weight:600;
+    display:flex;align-items:center;gap:6px;
+    white-space:nowrap;
+  }
+  .nav-actions{display:flex;gap:8px;flex-shrink:0;}
+  @media (max-width:860px){ .nav-links{display:none;} }
+  @media (max-width:520px){
+    .brand-name span{display:none;}
+    .brand-name{font-size:15px;}
+    .brand-mark{width:34px;height:34px;}
+    .nav-cta{padding:8px 12px;font-size:12px;}
+    .nav{padding:12px 16px;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:64px 0 40px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--emerald);font-weight:600;
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--gold);}
+  .hero h1{
+    font-size:clamp(38px,5vw,64px);
+    line-height:1.03;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--emerald);}
+  .hero p.lede{
+    font-size:17px;line-height:1.65;color:var(--ink-soft);
+    max-width:480px;margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{
+    padding:14px 26px;font-size:14px;font-weight:600;border-radius:2px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--emerald);color:#fff;}
+  .btn-secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .hero-trust{display:flex;gap:26px;flex-wrap:wrap;}
+  .hero-trust div{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  .hero-trust strong{display:block;font-family:'Fraunces',serif;font-size:24px;color:var(--ink);font-weight:600;}
+
+  .hero-visual{position:relative;}
+  .shelf-frame{
+    position:relative;
+    border:3px solid var(--tag-blue);
+    border-radius:4px;
+    overflow:hidden;
+    box-shadow:0 24px 50px -18px rgba(18,40,32,0.35);
+  }
+  .shelf-frame img{width:100%;height:520px;object-fit:cover;}
+  .float-tag{
+    position:absolute;
+    animation:none;
+  }
+  .float-tag.t1{top:22px;left:-18px;transform:rotate(-4deg);}
+  .float-tag.t2{bottom:100px;right:-14px;transform:rotate(3deg);}
+  .float-tag.t3{bottom:22px;left:28px;transform:rotate(-2deg);}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:90px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:48px;gap:24px;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:26px;
+  }
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);}
+  .section-head p{color:var(--ink-soft);max-width:420px;font-size:15px;line-height:1.6;}
+
+  /* ---------- why choose us ---------- */
+  .why{background:var(--emerald);color:var(--cream);}
+  .why .section-head{border-color:rgba(246,241,231,0.18);}
+  .why .section-head p{color:rgba(246,241,231,0.72);}
+  .feature-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:rgba(246,241,231,0.16);
+    border:1px solid rgba(246,241,231,0.16);
+  }
+  .feature{background:var(--emerald);padding:34px 26px;}
+  .feature-icon{font-size:26px;margin-bottom:18px;display:block;}
+  .feature h3{font-family:'Fraunces',serif;font-size:18px;color:var(--gold-soft);margin-bottom:10px;font-weight:600;}
+  .feature p{font-size:14px;line-height:1.6;color:rgba(246,241,231,0.75);}
+  @media (max-width:860px){.feature-grid{grid-template-columns:1fr 1fr;}}
+
+  /* ---------- collections (occasion) ---------- */
+  .collection-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  }
+  .collection-card{
+    position:relative;border-radius:4px;overflow:hidden;
+    aspect-ratio:3/4;
+    border:1px solid var(--line);
+  }
+  .collection-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .collection-card:hover img{transform:scale(1.06);}
+  .collection-card .overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(18,40,32,0) 40%,rgba(18,40,32,0.85) 100%);
+    display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
+  }
+  .collection-card .overlay .tag{margin-bottom:10px;align-self:flex-start;}
+  .collection-card .overlay h3{color:#fff;font-size:19px;font-weight:600;}
+  @media (max-width:860px){.collection-grid{grid-template-columns:1fr 1fr;}}
+
+  /* ---------- apparel + accessory category strip ---------- */
+  .cat-strip{
+    display:grid;grid-template-columns:repeat(5,1fr);
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+  }
+  .cat-cell{
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;justify-content:space-between;
+    transition:background .2s ease;
+    overflow:hidden;
+  }
+  .cat-cell:hover{background:var(--paper);}
+  .cat-cell .cat-thumb{width:100%;height:120px;overflow:hidden;}
+  .cat-cell .cat-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .cat-cell:hover .cat-thumb img{transform:scale(1.05);}
+  .cat-cell .cat-copy{padding:20px 20px 24px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+  .cat-cell h3{font-size:16px;font-weight:600;}
+  .cat-cell span{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:0.06em;}
+  @media (max-width:860px){.cat-strip{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.cat-strip{grid-template-columns:1fr;}}
+
+  /* ---------- accessory lounge ---------- */
+  .lounge{background:var(--paper);}
+  .lounge-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;}
+  .lounge-img{border:3px solid var(--gold);border-radius:4px;overflow:hidden;}
+  .lounge-img img{width:100%;height:460px;object-fit:cover;}
+  .lounge-copy h3{font-size:26px;margin-bottom:16px;}
+  .lounge-copy p{color:var(--ink-soft);line-height:1.7;font-size:15px;margin-bottom:22px;}
+  .lounge-list{list-style:none;}
+  .lounge-list li{
+    display:flex;justify-content:space-between;padding:14px 0;
+    border-bottom:1px solid var(--line);font-size:14px;
+  }
+  .lounge-list li span:first-child{font-weight:600;}
+  .lounge-list li span:last-child{color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;font-size:12px;}
+
+  /* ---------- featured curations filter bar ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0;}
+  .filters .tag{font-size:11px;padding:8px 16px 8px 12px;cursor:pointer;}
+
+  /* ---------- gallery: inside the store ---------- */
+  .gallery{background:var(--ink);color:var(--cream);}
+  .gallery .section-head{border-color:rgba(246,241,231,0.14);}
+  .gallery .section-head p{color:rgba(246,241,231,0.6);}
+  .gallery .eyebrow-note{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold-soft);
+    letter-spacing:0.06em;margin-bottom:10px;
+  }
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:14px;
+  }
+  .gallery-grid figure{position:relative;overflow:hidden;border-radius:3px;}
+  .gallery-grid figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .5s ease;filter:grayscale(15%);}
+  .gallery-grid figure:hover img{transform:scale(1.05);filter:grayscale(0%);}
+  .gallery-grid figure.big{grid-column:span 2;grid-row:span 2;}
+  .gallery-cap{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(0deg,rgba(0,0,0,0.75),transparent);
+    color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;
+    padding:14px 12px 10px;text-transform:uppercase;
+  }
+  @media (max-width:860px){.gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px;} .gallery-grid figure.big{grid-column:span 2;}}
+
+  /* ---------- reviews ---------- */
+  .reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .review-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:4px;
+    padding:32px;position:relative;
+  }
+  .review-card::before{
+    content:'"';
+    position:absolute;top:14px;right:24px;
+    font-family:'Fraunces',serif;font-size:64px;color:var(--gold-soft);
+    line-height:1;opacity:0.5;
+  }
+  .stars{color:var(--gold);font-size:15px;letter-spacing:2px;margin-bottom:16px;}
+  .review-card p.quote{font-family:'Fraunces',serif;font-size:19px;line-height:1.5;margin-bottom:22px;font-weight:500;}
+  .reviewer{display:flex;align-items:center;gap:10px;}
+  .reviewer-dot{width:34px;height:34px;border-radius:50%;background:var(--tag-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:14px;}
+  .reviewer span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);}
+  @media (max-width:860px){.reviews-grid{grid-template-columns:1fr;}}
+
+  /* ---------- team / owner strip ---------- */
+  .team{background:var(--emerald-deep);color:var(--cream);}
+  .team-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;}
+  .team-img{border-radius:4px;overflow:hidden;border:1px solid rgba(246,241,231,0.2);}
+  .team-img img{width:100%;height:420px;object-fit:cover;}
+  .team-copy .eyebrow{color:var(--gold-soft);}
+  .team-copy .eyebrow::before{background:var(--gold-soft);}
+  .team-copy h2{font-size:clamp(26px,3vw,36px);margin-bottom:18px;}
+  .team-copy p{color:rgba(246,241,231,0.75);line-height:1.75;font-size:15px;margin-bottom:14px;max-width:480px;}
+
+  /* ---------- location / contact ---------- */
+  .visit{background:var(--paper);}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .visit-block h3{font-size:14px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;font-weight:600;}
+  .visit-block p, .visit-block a{font-size:16px;line-height:1.7;color:var(--ink);}
+  .visit-block .addr{font-family:'Fraunces',serif;font-size:20px;font-weight:500;max-width:400px;}
+  .social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .map-box{
+    border:1px solid var(--line);border-radius:4px;overflow:hidden;height:100%;min-height:280px;
+    background:repeating-linear-gradient(45deg, var(--cream), var(--cream) 12px, #efe8d9 12px, #efe8d9 24px);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .map-pin{
+    width:44px;height:44px;border-radius:50% 50% 50% 0;background:var(--burgundy);
+    transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 20px -6px rgba(110,36,48,0.6);
+  }
+  .map-pin::after{content:'';width:16px;height:16px;background:var(--cream);border-radius:50%;transform:rotate(45deg);}
+  .map-label{
+    position:absolute;bottom:16px;left:16px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--ink-soft);
+  }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:rgba(246,241,231,0.6);padding:50px 0 26px;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;padding-bottom:34px;border-bottom:1px solid rgba(246,241,231,0.14);margin-bottom:24px;}
+  .footer-brand h3{color:var(--cream);font-size:22px;margin-bottom:8px;}
+  .footer-brand p{font-size:13px;max-width:280px;line-height:1.6;}
+  .footer-links{display:flex;gap:60px;flex-wrap:wrap;}
+  .footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:14px;}
+  .footer-col a{display:block;font-size:13px;margin-bottom:10px;color:rgba(246,241,231,0.7);}
+  .footer-bottom{display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:960px){
+    .hero-grid, .lounge-grid, .team-grid, .visit-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .shelf-frame img{height:360px;}
+  }
+
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    section{padding:56px 0;}
+    .hero{padding:40px 0 28px;}
+    .section-head{margin-bottom:32px;padding-bottom:20px;}
+    .hero h1{font-size:34px;}
+    .hero p.lede{font-size:15px;}
+    .hero-ctas{gap:10px;}
+    .btn{padding:12px 20px;font-size:13px;}
+    .hero-trust{gap:18px;}
+    .float-tag{display:none;}
+    .feature-grid{grid-template-columns:1fr;}
+    .collection-grid{grid-template-columns:1fr 1fr;gap:12px;}
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:130px;gap:8px;}
+    .gallery-grid figure.big{grid-column:span 2;grid-row:span 1;height:200px;}
+    .reviews-grid{grid-template-columns:1fr;gap:16px;}
+    .lounge-img img, .team-img img{height:280px;}
+    .footer-top{flex-direction:column;}
+    .footer-links{gap:32px;}
+    .map-box{min-height:200px;}
+    .visit-block .addr{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark"><img src="images/logo-mark.png" alt="Olly Jay Store logo"></div>
+      <div class="brand-name">Olly Jay Store<span>WHOLESALE · CLOTHES · BAGS · AKURE</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#collections" class="tag">Collections</a>
+      <a href="#apparel" class="tag tag--ink">Apparel</a>
+      <a href="#lounge" class="tag tag--gold">Accessories</a>
+      <a href="#gallery" class="tag">Inside The Store</a>
+      <a href="#visit" class="tag tag--burgundy">Visit Us</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://wa.me/2348164672247" class="nav-cta" style="background:#25623F;">WhatsApp Us</a>
+      <a href="tel:08164672247" class="nav-cta">Call</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Akure · Futa South Gate · Since day one</div>
+      <h1>Redefine your style.<br><em>Elevate</em> your confidence.</h1>
+      <p class="lede">From bold statement pieces to everyday boutique essentials, discover curated fashion that makes you stand out — wherever you go. Handpicked clothes, bags & footwear, sold wholesale and retail out of our Futa Campus Main Road store.</p>
+      <div class="hero-ctas">
+        <a href="#collections" class="btn btn-primary">Shop New Arrivals →</a>
+        <a href="#apparel" class="btn btn-secondary">Explore Collections</a>
+      </div>
+      <div class="hero-trust">
+        <div><strong>5.0★</strong>Customer rating</div>
+        <div><strong>3+</strong>Shelves of curated stock</div>
+        <div><strong>Wholesale</strong>& retail pricing</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="shelf-frame">
+        <img src="images/blue-skirt-mannequin.jpg" alt="Olly Jay Store display — midi skirt and top styled on mannequin against shelved bags and clothes">
+      </div>
+      <div class="float-tag t1 tag">New Drop</div>
+      <div class="float-tag t2 tag tag--gold">Bags · Shoes</div>
+      <div class="float-tag t3 tag tag--burgundy">Wholesale Ready</div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Welcome to Olly Jay Store</h2>
+      <p>We believe fashion is more than just clothing — it's an expression of who you are. A handpicked collection of trendy apparel, chic footwear and stylish handbags, designed to effortlessly elevate your everyday look.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="feature-icon">✨</span>
+        <h3>Handpicked Quality</h3>
+        <p>Every piece in our store is carefully selected for durability, comfort, and style before it ever reaches the shelf.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👠</span>
+        <h3>Head-to-Toe Looks</h3>
+        <p>Effortlessly match stylish clothing with our premium accessories and footwear — one stop, complete outfit.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🚚</span>
+        <h3>Fast, Reliable Delivery</h3>
+        <p>Get your favourite outfits delivered straight to your doorstep across Akure without the hassle.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💖</span>
+        <h3>Customer-First Fashion</h3>
+        <p>Boutique styling made affordable and accessible to everyone — wholesale pricing available on request.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="collections">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The Collections</h2>
+      <p>Shop by the moment you're dressing for, not just the item you're looking for.</p>
+    </div>
+    <div class="collection-grid">
+      <div class="collection-card">
+        <img src="images/black-dress-shoes.jpg" alt="Casual black dress with everyday footwear shelf">
+        <div class="overlay"><span class="tag">01</span><h3>The Daily Edit</h3></div>
+      </div>
+      <div class="collection-card">
+        <img src="images/red-dress-bags.jpg" alt="Red evening gown styled with premium handbags">
+        <div class="overlay"><span class="tag tag--burgundy">02</span><h3>After Hours & Evening</h3></div>
+      </div>
+      <div class="collection-card">
+        <img src="images/shelf-wide-2.jpg" alt="Structured shirts, blazers and folded trousers on shelf">
+        <div class="overlay"><span class="tag tag--ink">03</span><h3>Power & Tailoring</h3></div>
+      </div>
+      <div class="collection-card">
+        <img src="images/shelf-wide-1.jpg" alt="Relaxed weekend clothing, caps and casual pieces">
+        <div class="overlay"><span class="tag tag--gold">04</span><h3>Weekend Getaway</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apparel">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Apparel</h2>
+      <p>Your main wardrobe categories — clear, elegant, straightforward.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="cat-strip">
+      <div class="cat-cell">
+        <div class="cat-thumb"><img src="images/shelf-wide-2.jpg" alt="Tops and blouses on shelf"></div>
+        <div class="cat-copy"><h3>Tops & Blouses</h3><span>CASUAL → SILK</span></div>
+      </div>
+      <div class="cat-cell">
+        <div class="cat-thumb"><img src="images/red-dress-bags.jpg" alt="Dresses and jumpsuits"></div>
+        <div class="cat-copy"><h3>Dresses & Jumpsuits</h3><span>MINI · MIDI · MAXI</span></div>
+      </div>
+      <div class="cat-cell">
+        <div class="cat-thumb"><img src="images/blue-skirt-mannequin.jpg" alt="Co-ords and matching sets"></div>
+        <div class="cat-copy"><h3>Co-ords & Sets</h3><span>TWO-PIECE</span></div>
+      </div>
+      <div class="cat-cell">
+        <div class="cat-thumb"><img src="images/black-dress-shoes.jpg" alt="Pants and skirts"></div>
+        <div class="cat-copy"><h3>Pants & Skirts</h3><span>TAILORED · TRENDY</span></div>
+      </div>
+      <div class="cat-cell">
+        <div class="cat-thumb"><img src="images/shelf-wide-1.jpg" alt="Outerwear and layering pieces"></div>
+        <div class="cat-copy"><h3>Outerwear & Layers</h3><span>JACKETS · BLAZERS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lounge" class="lounge">
+  <div class="wrap">
+    <div class="lounge-grid">
+      <div class="lounge-img">
+        <img src="images/shelf-wide-1.jpg" alt="The Accessory Lounge — handbags, caps and shoes shelved">
+      </div>
+      <div class="lounge-copy">
+        <div class="eyebrow" style="color:var(--emerald);">The Accessory Lounge</div>
+        <h3>Footwear & Handbags, front and centre.</h3>
+        <p>Highlighted with premium framing because a great outfit is never finished until the accessories are right.</p>
+        <ul class="lounge-list">
+          <li><span>Statement Handbags</span><span>Clutches · Crossbody · Totes</span></li>
+          <li><span>Footwear</span><span>Heels · Mules · Flats</span></li>
+          <li><span>Finishing Touches</span><span>Belts · Sunglasses · Caps</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Featured Curations</h2>
+      <p>Filter fast, shop faster.</p>
+    </div>
+    <div class="filters">
+      <span class="tag">New Arrivals</span>
+      <span class="tag tag--gold">Best Sellers</span>
+      <span class="tag tag--ink">Back In Stock</span>
+      <span class="tag tag--burgundy">The Final Sale</span>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="wrap">
+    <div class="eyebrow-note">Actual shop floor — not stock photos</div>
+    <div class="section-head">
+      <h2>Inside The Store</h2>
+      <p>Our Futa Campus Main Road shelves, exactly as customers see them when they walk in.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="big"><img src="images/shelf-wide-2.jpg" alt="Full shelf of folded jeans, caps and handbags"><figcaption class="gallery-cap">Jean Trousers · Bags Wall</figcaption></figure>
+      <figure><img src="images/blue-skirt-mannequin.jpg" alt="Mannequin styled with midi skirt"><figcaption class="gallery-cap">Styled Look</figcaption></figure>
+      <figure><img src="images/red-dress-bags.jpg" alt="Red gown and menswear mannequin"><figcaption class="gallery-cap">Evening & Menswear</figcaption></figure>
+      <figure><img src="images/black-dress-shoes.jpg" alt="Black dress with shoe shelf"><figcaption class="gallery-cap">Shoes & Slides</figcaption></figure>
+      <figure><img src="images/shelf-wide-1.jpg" alt="Shelf with caps, bags and folded clothes"><figcaption class="gallery-cap">Caps & Accessories</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Customers Say</h2>
+      <p>Real reviews, straight from Google.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Olly Jay has been a wonderful plug for correct dresses. Round necks, Tees... whatever it is, you name it — quality and very affordable."</p>
+        <div class="reviewer">
+          <div class="reviewer-dot">A</div>
+          <span>Akintomide Onipede</span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Nice business. I love the materials of the round neck I got from her months ago. Good quality for affordable prices 💙"</p>
+        <div class="reviewer">
+          <div class="reviewer-dot">O</div>
+          <span>Oluwadamilare Adenibuyan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <div class="team-grid">
+      <div class="team-img">
+        <img src="images/owner-portrait.jpg" alt="Olly Jay Store team member styling the shop floor">
+      </div>
+      <div class="team-copy">
+        <div class="eyebrow">Run by people who know the racks</div>
+        <h2>Boutique styling, made affordable.</h2>
+        <p>Every shelf you see is arranged, tagged and restocked by hand — from the jean-trouser wall to the handbag ledge. That's the same eye for detail that goes into every order we pack, wholesale or retail.</p>
+        <p>Follow along on Instagram and TikTok for new drops before they hit the shelf.</p>
+        <div class="social-row">
+          <a href="https://www.instagram.com/ollyjay_store/" class="tag tag--gold">Instagram</a>
+          <a href="https://web.facebook.com/ollyjaystore/" class="tag">Facebook</a>
+          <a href="https://www.tiktok.com/@ollyjay_store" class="tag tag--burgundy">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Visit The Store</h2>
+      <p>Wholesale buyers welcome — call ahead if you're coming in bulk.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-block">
+        <h3>Address</h3>
+        <p class="addr">Around Bola International School, Futa South Gate, 1 Civilian Barrack, Alaba Community, Futa Stateline Road, Futa Campus Main Road, Akure, 340110, Ondo State.</p>
+        <h3 style="margin-top:32px;">Phone</h3>
+        <p><a href="tel:08164672247">0816 467 2247</a></p>
+        <div class="social-row">
+          <a href="https://wa.me/2348164672247" class="tag" style="background:#25623F;">WhatsApp</a>
+          <a href="https://www.instagram.com/ollyjay_store/" class="tag tag--gold">@ollyjay_store</a>
+          <a href="https://web.facebook.com/ollyjaystore/" class="tag">Facebook Page</a>
+        </div>
+      </div>
+      <div class="map-box">
+        <div class="map-pin"></div>
+        <span class="map-label">FUTA CAMPUS MAIN RD · AKURE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand" style="display:flex;gap:16px;align-items:flex-start;">
+        <img src="images/logo-mark.png" alt="Olly Jay Store" style="width:56px;height:56px;flex-shrink:0;">
+        <div>
+          <h3>Olly Jay Store</h3>
+          <p>Wholesale & retail clothes, bags and footwear on Futa Campus Main Road, Akure.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#collections">Collections</a>
+          <a href="#apparel">Apparel</a>
+          <a href="#lounge">Accessory Lounge</a>
+        </div>
+        <div class="footer-col">
+          <h4>Store</h4>
+          <a href="#gallery">Inside The Store</a>
+          <a href="#visit">Visit Us</a>
+          <a href="tel:08164672247">Call 0816 467 2247</a>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <a href="https://www.instagram.com/ollyjay_store/">Instagram</a>
+          <a href="https://web.facebook.com/ollyjaystore/">Facebook</a>
+          <a href="https://www.tiktok.com/@ollyjay_store">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Olly Jay Store, Akure.</span>
+      <span>Site concept & build by gem.dev</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
